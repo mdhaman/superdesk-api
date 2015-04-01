@@ -259,6 +259,7 @@ A single User resource.
 
 + Response 200 (application/json)
 
+
         {"_status": "OK"}
 
 + Response 403
@@ -2522,6 +2523,15 @@ A single Group resource
                     },
                     "rule_set": "54599a941d41c853c71beaab",
                     "routing_scheme": "5459a91d41c853c71b",
+                    "last_closed": {
+                        "closed_at": "2014-11-06T00:33:30+0000",
+                        "closed_by": "123",
+                        "message": ""
+                    },
+                    "last_opened": {
+                        "opened_by": "123",
+                        "opened_at": "2014-11-06T00:33:30+0000"
+                    },
                     "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
                 },
                 {
@@ -2611,7 +2621,16 @@ A single Group resource
                 "on_close": true,
                 "on_open": true,
                 "on_error": true,
-            },            
+            },
+            "last_closed": {
+                "closed_at": "2014-11-06T00:33:30+0000",
+                "closed_by": "123",
+                "message": ""
+            },
+            "last_opened": {
+                "opened_by": "123",
+                "opened_at": "2014-11-06T00:33:30+0000"
+            },
             "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
         }
 
@@ -2668,6 +2687,15 @@ A single Group resource
                 "on_close": true,
                 "on_open": true,
                 "on_error": true,
+            },
+            "last_closed": {
+                "closed_at": "2014-11-06T00:33:30+0000",
+                "closed_by": "123",
+                "message": ""
+            },
+            "last_opened": {
+                "opened_by": "123",
+                "opened_at": "2014-11-06T00:33:30+0000"
             }
         }
 
@@ -2714,7 +2742,17 @@ A single Group resource
                 "on_close": true,
                 "on_open": true,
                 "on_error": true,
-            }
+            },
+            "last_closed": {
+                "closed_at": "2014-11-06T00:33:30+0000",
+                "closed_by": "123",
+                "message": ""
+            },
+            "last_opened": {
+                "opened_by": "123",
+                "opened_at": "2014-11-06T00:33:30+0000"
+            },
+
         }
 
 + Response 404
@@ -2732,6 +2770,399 @@ A single Group resource
 + Response 204
 
 + Response 403
+
+
+# Group Output Channels
+
+## List of Output Channels [/output_channels]
+
+### Retrieves a list of Output Channels [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/output_channels/123qwe",
+                            "title": "output_channel"
+                        }
+                    },
+                    "name": "ANPA Feed",
+                    "description": "this is ANPA feed.",
+                    "_id": "123qwe",
+                    "_updated": "2014-11-06T00:33:30+0000",
+                    "_created": "2014-11-05T03:33:40+0000",
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                },
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/output_channels/456asd",
+                            "title": "output_channel"
+                        }
+                    },
+                    "name": "Newsml Feed",
+                    "description": "this is Newsml feed.",
+                    "_id": "456asd",
+                    "_updated": "2014-11-06T00:33:30+0000",
+                    "_created": "2014-11-05T03:33:40+0000",
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                }
+            ],
+            "_links": {
+                "self": {
+                    "href": "/output_channels",
+                    "title": "output_channels"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "_meta": {
+                "max_results": 25,
+                "total": 2,
+                "page": 1
+            }
+        }
+
++ Response 403
+
+## Output Channel Item [/output_channels/{_id}]
+
+### Retrieves a single Output Channel resource [GET]
+
++ Parameters
+    - _id (string, `1`) ... Output Channel identifier.
+
++ Response 200 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "href": "/output_channels/123qwe",
+                    "title": "output_channel"
+                },
+                "collection": {
+                    "href": "/output_channels",
+                    "title": "output_channels"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "name": "ANPA Feed",
+            "description": "this is ANPA feed.",
+            "_id": "123qwe",
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 404
+
++ Response 403
+
+### Create Output Channel item [POST]
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "name": "new channel Name",
+            }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "href": "/output_channels/123qwe",
+                    "title": "output_channel"
+                },
+                "collection": {
+                    "href": "/output_channels",
+                    "title": "output_channels"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "name": "new channel name",
+            "description": "",
+            "_id": "123qwe",
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 404
+
++ Response 403
+
++ Response 400
+
+### Update Output Channel item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+
+    + Body
+    
+            {"name": "Foo"}
+
++ Response 200 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "href": "/output_channels/123qwe",
+                    "title": "output_channel"
+                },
+                "collection": {
+                    "href": "/output_channels",
+                    "title": "output_channels"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "name": "Foo",
+            "description": "",
+            "_id": "123qwe",
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 404
+
++ Response 403
+
++ Response 400
+
+### Hard Delete Output Channel item [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 204
+
++ Response 403
+
+
+# Group Destination Groups
+
+## List of Destination Groups [/destination_groups]
+
+### Retrieves a list of Destination Groups [GET]
+
++ Response 200 (application/json)
+
+        {
+            "_items": [
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/destination_groups/123qwe",
+                            "title": "destination_group"
+                        }
+                    },
+                    "name": "Group 1",
+                    "description": "Group 1",
+                    "_id": "123qwe",
+                    "destionation_groups": [],
+                    "output_channels": [{"channel": "123qwe", "selector_codes": ["PXX", "MIX"]}]
+                    "_updated": "2014-11-06T00:33:30+0000",
+                    "_created": "2014-11-05T03:33:40+0000",
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                },
+                {
+                    "_links": {
+                        "self": {
+                            "href": "/destination_groups/3e4r5t6",
+                            "title": "destination_group"
+                        }
+                    },
+                    "name": "Group 2",
+                    "description": "Group 2",
+                    "_id": "3e4r5t6",
+                    "destionation_groups": [{"group": "123qwe"}],
+                    "output_channels": [{"channel": "123qwe", "selector_codes": ["PXX", "MIX"]}]
+                    "_updated": "2014-11-06T00:33:30+0000",
+                    "_created": "2014-11-05T03:33:40+0000",
+                    "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+                }
+            ],
+            "_links": {
+                "self": {
+                    "href": "/destination_groups",
+                    "title": "destination_group"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "_meta": {
+                "max_results": 25,
+                "total": 2,
+                "page": 1
+            }
+        }
+
+
+## Destination Group Item [/destination_groups/{_id}]
+
+### Retrieves a single Destination Groups resource [GET]
+
++ Parameters
+    - _id (string, `1`) ... Destination Groups identifier.
+
++ Response 200 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "href": "/destination_groups/123qwe",
+                    "title": "destination_group"
+                },
+                "collection": {
+                    "href": "/destination_groups",
+                    "title": "destination_groups"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "name": "Group 1",
+            "description": "Group 1",
+            "_id": "123qwe",
+            "destionation_groups": [],
+            "output_channels": [{"channel": "123qwe", "selector_codes": ["PXX", "MIX"]}]
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 404
+
+
+### Create Destination Group item [POST]
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "name": "new group",
+                "destionation_groups": [{"group": "12345"}],
+                "output_channels": [{"channel": "123qwe", "selector_codes": ["PXX", "MIX"]}]                
+            }
+
++ Response 201 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "href": "/destination_groups/123qwe",
+                    "title": "destination_group"
+                },
+                "collection": {
+                    "href": "/destination_groups",
+                    "title": "destination_groups"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "name": "new group",
+            "description": "",
+            "_id": "123qwe",
+            "destionation_groups": [{"group": "12345"}],
+            "output_channels": [{"channel": "123qwe", "selector_codes": ["PXX", "MIX"]}]
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 403
+
++ Response 400
+
+### Update Destination Group item [PATCH]
+
++ Request (application/json)
+
+    + Headers
+    
+            If-Match: xyz
+
+    + Body
+    
+            {"name": "Foo"}
+
++ Response 200 (application/json)
+
+        {
+            "_links": {
+                "self": {
+                    "href": "/destination_groups/123qwe",
+                    "title": "destination_group"
+                },
+                "collection": {
+                    "href": "/destination_groups",
+                    "title": "destination_groups"
+                },
+                "parent": {
+                    "href": "/",
+                    "title": "home"
+                }
+            },
+            "name": "Foo",
+            "description": "",
+            "_id": "123qwe",
+            "destionation_groups": [{"group": "12345"}],
+            "output_channels": [{"channel": "123qwe", "selector_codes": ["PXX", "MIX"]}]
+            "_updated": "2014-11-06T00:33:30+0000",
+            "_created": "2014-11-05T03:33:40+0000",
+            "_etag": "fa1711532d64729db20f1b6334c384643d9a3c82"
+        }
+
++ Response 404
+
++ Response 403
+
++ Response 400
+
+### Hard Destination Group item [DELETE]
+
++ Request
+
+    + Headers
+    
+            If-Match: xyz
+
++ Response 204
+
++ Response 403
+
++ Response 412
+
 
 ## Rule set [/rule_sets/{_id}]
 
@@ -2785,8 +3216,8 @@ Fetches all routing schemes
                                 "body": "Melbourne Cup 2015"
                             },
                             "actions": {
-                                "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                                "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445"}],
+                                "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf", "macro": "name_of_the_macro"}],
+                                "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445", "macro": "name_of_the_macro"}],
                                 "exit": "false"
                             },
                             "schedule": {
@@ -2845,8 +3276,8 @@ Retrieves a Routing Rule Scheme
                         "body": "Melbourne Cup 2015"
                     },
                     "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
-                        "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445"}],
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf", "macro": "name_of_the_macro"}],
+                        "publish": [{"desk": "12sbvfkjd378mn111fgh", "stage": "sdf67764102dfsdf445", "macro": "name_of_the_macro"}],
                         "exit": "false"
                     },
                     "schedule": {
@@ -2883,7 +3314,7 @@ Creates a Routing Rule Scheme
                         "type": ["text", "preformatted"]
                     },
                     "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf", "macro": "name_of_the_macro"}],
                         "publish": [],
                         "exit": "false"
                     }
@@ -2915,7 +3346,7 @@ Creates a Routing Rule Scheme
                         "type": ["text", "preformatted"]
                     },
                     "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf", "macro": "name_of_the_macro"}],
                         "publish": [],
                         "exit": "false"
                     }
@@ -2978,7 +3409,7 @@ Updates a Routing Rule Scheme
                         "type": ["text"],
                     },
                     "actions": {
-                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf"}],
+                        "fetch": [ {"desk": "12sbvfkjd378mn111", "stage": "sdf67764102dfsdf", "macro": "name_of_the_macro"}],
                         "publish": [{"desk": "12sbvfkjd378mn11sdf1", "stage": "sdf67764102df12sdf"}],
                         "exit": "false"
                     }
